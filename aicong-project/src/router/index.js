@@ -19,10 +19,43 @@ export default new Router({
         name: 'platformUsers',
         component: () => import('../components/platform/platformUsers/users.vue')
       }]
-    }, {
+    }, 
+    {
       path: '/store',
       name: 'store',
-      component: Store
+      component: () => import('../views/stores/app.vue'),
+      children:[
+        {
+          path:"commdityList",
+          name:"commdityList",
+          component: () => import('../components/stores/commdity/commdityList.vue')
+        },
+        {
+          path:"addCommdity",
+          name:"addCommdity",
+          component: () => import('../components/stores/commdity/addCommdity.vue')
+        },
+        {
+          path:"serveList",
+          name:"serveList",
+          component: () => import('../components/stores/serve/serveList.vue')
+        },
+        {
+          path:"addServe",
+          name:"addServe",
+          component: () => import('../components/stores/serve/addServe.vue')
+        },
+        {
+          path:"petsList",
+          name:"petsList",
+          component: () => import('../components/stores/pets/petsList.vue')
+        },
+        {
+          path:"addPets",
+          name:"addPets",
+          component: () => import('../components/stores/pets/addPets.vue')
+        }
+      ]
     }]
 
 })
