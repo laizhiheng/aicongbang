@@ -4,7 +4,7 @@
     <el-container>
       <!-- 左侧列表 -->
       <el-aside width="210px" style="background-color: rgb(238, 241, 246); border: 1px solid #eee;">
-        <el-menu :default-openeds="['1', '4']" router >
+        <el-menu router >
           <el-submenu index="/platform">
             <template slot="title">
               <i class="el-icon-menu"></i>门店
@@ -40,13 +40,11 @@
           </el-submenu>
         </el-menu>
       </el-aside>
-      <el-main style="margin-left:5px;border: 1px solid #eee;position: relative;">
+      <el-main style="margin-left:5px;border: 1px solid #eee;">
         <!-- 主体 -->
-        <template>
+        <!-- <template> -->
           <router-view></router-view>
-        </template>
-        <!-- 分页 -->
-        <el-pagination background layout="prev, pager, next" :total="100" class="pagination"></el-pagination>
+        <!-- </template> -->
       </el-main>
     </el-container>
   </el-container>
@@ -70,12 +68,6 @@
 
 .el-aside {
   color: #333;
-}
-
-.pagination {
-  position: absolute;
-  left: 30%;
-  bottom: 20px;
 }
 </style>
 
