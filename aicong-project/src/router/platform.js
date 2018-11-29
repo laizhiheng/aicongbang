@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Platform from '../views/platform.vue'
+import Platform from '../views/platform/platform.vue'
 
 Vue.use(Router)
 
