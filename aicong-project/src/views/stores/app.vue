@@ -59,6 +59,15 @@
               <el-menu-item index="2-1">订单列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
+               <el-submenu style="background-color:#4594bf;border-bottom:1px solid black">
+            <template slot="title">
+              <i class="el-icon-more"></i>我的店铺
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="2-1">店铺列表</el-menu-item>
+              <el-menu-item index="2-1">新增店铺</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
          
         </el-menu>
       </el-aside>
