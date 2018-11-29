@@ -10,14 +10,14 @@ export default new Router({
       path: '/platform',
       name: 'platform',
       component: () => import('../views/platform/info.vue'),
-      children:[{
-        path:'platformList',
-        name:'platformList',
+      children: [{
+        path: 'platformList',
+        name: 'platformList',
         component: () => import('../components/platform/platformList/app.vue')
-      },{
+      }, {
         path: '/users',
-      name: 'users',
-      component: Users
+        name: 'users',
+        component: Users
       }]
     }
   ],
