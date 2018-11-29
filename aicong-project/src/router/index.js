@@ -18,6 +18,19 @@ export default new Router({
         path: 'platformUsers',
         name: 'platformUsers',
         component: () => import('../components/platform/platformUsers/users.vue')
+      },
+      {
+        path: 'storesUsers',
+        name: 'storesUsers',
+        component: () => import('../components/platform/storesUsers/users.vue')
+      }, {
+        path: 'petMasterList',
+        name: 'petMasterList',
+        component: () => import('../components/platform/petMaster/petMasterList.vue')
+      }, {
+        path: 'auditingList',
+        name: 'auditingList',
+        component: () => import('../components/platform/auditing/auditingList.vue')
       }]
     }, 
     {
