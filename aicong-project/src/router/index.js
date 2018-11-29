@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Users from '../components/users.vue'
+import Store from '../views/stores/app.vue'
 
 Vue.use(Router)
 
@@ -15,11 +15,14 @@ export default new Router({
         name: 'platformList',
         component: () => import('../components/platform/platformList/app.vue')
       }, {
-        path: '/users',
-        name: 'users',
-        component: Users
+        path: 'platformUsers',
+        name: 'platformUsers',
+        component: () => import('../components/platform/platformUsers/users.vue')
       }]
-    }
-  ],
+    }, {
+      path: '/store',
+      name: 'store',
+      component: Store
+    }]
 
 })

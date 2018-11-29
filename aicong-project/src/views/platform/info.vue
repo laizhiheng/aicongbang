@@ -18,7 +18,7 @@
               <i class="el-icon-tickets"></i>用户
             </template>
             <el-menu-item-group>
-              <el-menu-item index="/platform/users/users">平台用户</el-menu-item>
+              <el-menu-item index="/platform/platformUsers/users">平台用户</el-menu-item>
               <el-menu-item index="2-1">门店用户</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
