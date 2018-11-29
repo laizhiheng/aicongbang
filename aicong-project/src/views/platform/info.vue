@@ -4,7 +4,7 @@
     <el-container>
       <!-- 左侧列表 -->
       <el-aside width="210px" style="background-color: rgb(238, 241, 246); border: 1px solid #eee;">
-        <el-menu :default-openeds="['1', '4']" router>
+        <el-menu :default-openeds="['1', '4']" router >
           <el-submenu index="/platform">
             <template slot="title">
               <i class="el-icon-menu"></i>门店
