@@ -1,19 +1,28 @@
 <template>
   <el-container style="height: 100%;min-height:450px;">
-    <el-header class="el-header">宠物平台管理系统s</el-header>
+    <el-header class="el-header">爱宠帮平台管理系统</el-header>
     <el-container>
+      <!-- 左侧列表 -->
       <el-aside width="210px" style="background-color: rgb(238, 241, 246); border: 1px solid #eee;">
-        <el-menu :default-openeds="['1', '3']">
-          <el-submenu index="1">
+        <el-menu :default-openeds="['1', '4']" router>
+          <el-submenu index="/platform">
             <template slot="title">
               <i class="el-icon-menu"></i>门店
             </template>
             <el-menu-item-group>
-              <el-menu-item index="1-1">门店列表</el-menu-item>
-              <el-menu-item index="1-2">用户列表</el-menu-item>
+              <el-menu-item index="/platform/platformList/app">门店列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-          <el-submenu index="2">
+          <el-submenu index="/users">
+            <template slot="title">
+              <i class="el-icon-tickets"></i>用户
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="/platform/users/users">平台用户</el-menu-item>
+              <el-menu-item index="2-1">门店用户</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+          <el-submenu index="3">
             <template slot="title">
               <i class="el-icon-more"></i>宠主
             </template>
@@ -21,7 +30,7 @@
               <el-menu-item index="2-1">宠主列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-          <el-submenu index="3">
+          <el-submenu index="4">
             <template slot="title">
               <i class="el-icon-edit"></i>审核
             </template>
@@ -32,9 +41,9 @@
         </el-menu>
       </el-aside>
       <el-main style="margin-left:5px;border: 1px solid #eee;position: relative;">
-        <!-- 列表 -->
+        <!-- 主体 -->
         <template>
-          <el-table :data="tableData" style="width: 100%">
+          <!-- <el-table :data="tableData" style="width: 100%">
             <el-table-column prop="storeName" label="店名"></el-table-column>
             <el-table-column prop="shopAdd" label="地址"></el-table-column>
             <el-table-column prop="shopCorporate" label="法人"></el-table-column>
@@ -47,7 +56,8 @@
             <el-table-column prop="pets" label="宠物"></el-table-column>
             <el-table-column prop="serve" label="服务"></el-table-column>
             <el-table-column prop="users" label="门店管理员"></el-table-column>
-          </el-table>
+          </el-table>-->
+          <router-view></router-view>
         </template>
         <!-- 分页 -->
         <el-pagination background layout="prev, pager, next" :total="100" class="pagination"></el-pagination>
