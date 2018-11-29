@@ -1,5 +1,6 @@
 <template>
   <el-container style="height: 100%;">
+    <el-header class="el-header">宠物平台管理系统</el-header>
     <el-header class="el-header">宠物平台管理系统s</el-header>
     <el-container style="height: 100%;">
       <el-aside width="210px" style="background-color: rgb(238, 241, 246); border: 1px solid #eee;">
