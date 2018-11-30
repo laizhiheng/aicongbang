@@ -1,10 +1,10 @@
 export default {
   namespaced: true,
   state: {
-    // curPage: 1,
-    // eachPage: 10,
-    // maxPage: 0,
-    // total: 0,
+    curPage: 1,
+    eachPage: 10,
+    maxPage: 0,
+    total: 0,
     rows: [],
     userType:0
   },
@@ -14,9 +14,9 @@ export default {
       
       Object.assign(state, payload)
     },
-    // setCurPage(state, curPage) {
-    //   state.curPage = curPage
-    // }
+    setCurPage(state, curPage) {
+      state.curPage = curPage
+    }
   },
   actions: {
     async getUsersByTypeAsync(context,{userType = 0}={}) {

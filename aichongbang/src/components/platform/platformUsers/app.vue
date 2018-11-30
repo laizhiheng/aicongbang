@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <el-table :data="rows" style="width: 100%" fit>
+    <el-table :data="rows" style="width: 100%" fit>
       <el-table-column prop="username" label="登录名"></el-table-column>
       <el-table-column prop="password" label="密码"></el-table-column>
       <el-table-column prop="userPhone" label="手机号"></el-table-column>
@@ -13,7 +13,7 @@
           <el-button type="text" size="small">修改</el-button>
         </template>
       </el-table-column>
-    </el-table> -->
+    </el-table>
     <!-- <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
