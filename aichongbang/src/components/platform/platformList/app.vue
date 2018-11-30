@@ -20,8 +20,8 @@
 
 <style>
 .pagination {
-  margin-left:30%;
-  margin-top:50px;
+  margin-left:10%;
+  margin-top:10px;
 }
 </style>
 
