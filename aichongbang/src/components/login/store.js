@@ -1,13 +1,14 @@
 export default {
     namespaced: true,
     state: {
-        loginState: false
+        loginState: false,
+        userType:0
     },
     mutations: {
         getManage(state, payload) {
             if (payload.isOk) {
-                console.log(payload)
-                state.loginState = true
+                state.loginState = true;
+                state.userType = payload.userType
             }
 
         }
