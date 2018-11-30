@@ -14,14 +14,14 @@
       </el-table-column>
     </el-table>
     <!-- 分页 -->
-    <el-pagination background layout="prev, pager, next" :total="100" class="pagination"></el-pagination>
+    <!-- <el-pagination background layout="prev, pager, next" :total="100" class="pagination"></el-pagination> -->
   </el-main>
 </template>
 
 <style>
 .pagination {
   margin-left:10%;
-  margin-top:10px;
+  margin-top:80px;
 }
 </style>
 

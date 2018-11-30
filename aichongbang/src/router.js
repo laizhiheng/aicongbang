@@ -18,11 +18,11 @@ export default new Router({
         }, {
           path: 'platformUsers',
           name: 'platformUsers',
-          component: () => import('./components/platform/platformUsers/users.vue')
+          component: () => import('./components/platform/platformUsers/app.vue')
         }, {
           path: 'storesUsers',
           name: 'storesUsers',
-          component: () => import('./components/platform/storesUsers/users.vue')
+          component: () => import('./components/platform/storesUsers/app.vue')
         }, {
           path: 'petMasterList',
           name: 'petMasterList',
