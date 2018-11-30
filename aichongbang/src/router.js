@@ -1,7 +1,6 @@
 
 import Vue from 'vue'
 import Router from 'vue-router'
-import Store from './views/stores/app.vue'
 
 import Login from "./components/login/login.vue"
 import Reg from "./components/reg/reg.vue"
@@ -39,6 +38,7 @@ export default new Router({
           name: 'auditingList',
           component: () => import('./components/platform/auditing/auditingList.vue')
         }]
+<<<<<<< HEAD
       }, 
       {
         path: '/store',
@@ -65,6 +65,45 @@ export default new Router({
         name: 'info',
         component: Info
       },
+=======
+    }, {
+      path: '/store',
+      name: 'store',
+      component: () => import('./views/stores/app.vue'),
+      children:[
+        {
+          path:"commdityList",
+          name:"commdityList",
+          component: () => import('./components/stores/commdity/commdityList.vue')
+        },
+        {
+          path:"addCommdity",
+          name:"addCommdity",
+          component: () => import('./components/stores/commdity/addCommdity.vue')
+        },
+        {
+          path:"serveList",
+          name:"serveList",
+          component: () => import('./components/stores/serve/serveList.vue')
+        },
+        {
+          path:"addServe",
+          name:"addServe",
+          component: () => import('./components/stores/serve/addServe.vue')
+        },
+        {
+          path:"petsList",
+          name:"petsList",
+          component: () => import('./components/stores/pets/petsList.vue')
+        },
+        {
+          path:"addPets",
+          name:"addPets",
+          component: () => import('./components/stores/pets/addPets.vue')
+        }
+      ]
+    }]
+>>>>>>> 7970f754a6230fd7cedc3e7bcef8a4c20a880cc0
 
     ]
 })
