@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="../../../../images/timg.jpg" alt="" width="100%">
+    <img src="./images/timg.jpg" alt="" width="100%">
     
     <el-card class="box-card">
       <div slot="header">
