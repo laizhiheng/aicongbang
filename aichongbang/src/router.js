@@ -38,15 +38,9 @@ export default new Router({
           name: 'auditingList',
           component: () => import('./components/platform/auditing/auditingList.vue')
         }]
-<<<<<<< HEAD
       }, 
       {
-        path: '/store',
-        name: 'store',
-        component: Store
-      },
-      {
-        path: '/login',//登陆
+        path: '/',//登陆
         name: 'login',
         component: Login
       },
@@ -65,8 +59,8 @@ export default new Router({
         name: 'info',
         component: Info
       },
-=======
-    }, {
+    
+    {
       path: '/store',
       name: 'store',
       component: () => import('./views/stores/app.vue'),
@@ -91,19 +85,17 @@ export default new Router({
           name:"addServe",
           component: () => import('./components/stores/serve/addServe.vue')
         },
-        {
-          path:"petsList",
-          name:"petsList",
-          component: () => import('./components/stores/pets/petsList.vue')
-        },
-        {
-          path:"addPets",
-          name:"addPets",
-          component: () => import('./components/stores/pets/addPets.vue')
-        }
+        // {
+        //   path:"petsList",
+        //   name:"petsList",
+        //   component: () => import('./components/stores/pets/petsList.vue')
+        // },
+        // {
+        //   path:"addPets",
+        //   name:"addPets",
+        //   component: () => import('./components/stores/pets/addPets.vue')
+        // }
       ]
     }]
->>>>>>> 7970f754a6230fd7cedc3e7bcef8a4c20a880cc0
-
-    ]
+    
 })

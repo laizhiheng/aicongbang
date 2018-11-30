@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="../../../../images/timg.jpg" alt width="100%">
+    <img src="../login/images/timg.jpg" alt width="100%">
     <el-card class="box1-card">
       <div slot="header">
         <h2>注册门店</h2>

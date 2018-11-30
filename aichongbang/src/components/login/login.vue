@@ -1,7 +1,7 @@
 <template>
   <div>
-    <img src="../../../../images/timg.jpg" alt="" width="100%">
-    
+    <img src="./images/timg.jpg" alt width="100%">
+
     <el-card class="box-card">
       <div slot="header">
         <h2>登陆</h2>
@@ -34,7 +34,6 @@
   top: 80px;
   left: 480px;
 }
-
 </style>
 
 <script>
@@ -49,7 +48,7 @@ export default {
   },
   name: "login",
   computed: {
-    ...mapState(["loginState"])
+    ...mapState(["loginState", "userType"])
   },
   methods: {
     ...mapActions(["getManageAsync"]),
@@ -59,13 +58,22 @@ export default {
       if (this.loginState) {
         //判断账号是否正确，正确则跳转
         this.$message("登陆成功");
-        this.$router.push({ path: "/info" });
+        if (this.userType == 0) {
+          //跳转到管理员页面
+          console.log("平台管理员");
+          this.$router.push({ path: "/info" });
+        } else if (this.userType == 1) {
+          //跳转到店主页面
+          console.log("店主");
+          this.$router.push({ path: "/info" });
+        }
       } else {
         this.$message("用户名或密码错误，请重新登陆");
       }
     },
     reg() {
       //跳转到注册页面
+
       this.$router.push({ path: "/reg" });
     }
   }
