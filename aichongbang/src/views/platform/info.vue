@@ -10,7 +10,7 @@
               <i class="el-icon-menu"></i>门店
             </template>
             <el-menu-item-group>
-              <el-menu-item index="/platform/platformList">门店列表</el-menu-item>
+              <el-menu-item index="/platform/storeList">门店列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="/users">
@@ -28,6 +28,7 @@
             </template>
             <el-menu-item-group>
               <el-menu-item index="/platform/petMasterList">宠主列表</el-menu-item>
+              <el-menu-item index="/platform/addPetMaster">新增宠主</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="/auditing">
@@ -35,16 +36,23 @@
               <i class="el-icon-edit"></i>审核
             </template>
             <el-menu-item-group>
-              <el-menu-item index="/platform/auditingList">审核列表</el-menu-item>
+              <el-menu-item index="/platform/auditingList">门店注册审核</el-menu-item>
+              <el-menu-item index="/platform/auditingList">店主注册审核</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+          <el-submenu index="/supplier">
+            <template slot="title">
+              <i class="el-icon-goods"></i>供应商
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="/platform/supplier">供应商列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
       </el-aside>
       <el-main style="margin-left:5px;border: 1px solid #eee;">
         <!-- 主体 -->
-        <!-- <template> -->
           <router-view></router-view>
-        <!-- </template> -->
       </el-main>
     </el-container>
   </el-container>

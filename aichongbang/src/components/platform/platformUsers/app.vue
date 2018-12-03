@@ -1,6 +1,9 @@
 <template>
   <div>
-    <el-table :data="rows" fit>
+    <el-table
+      :data="rows"
+      fit
+    >
       <el-table-column width="100px" prop="username" label="登录名"></el-table-column>
       <el-table-column width="100px" prop="password" label="密码"></el-table-column>
       <el-table-column width="150px" prop="userPhone" label="手机号"></el-table-column>
@@ -14,7 +17,7 @@
       <el-table-column prop="state" label="状态"></el-table-column>
       <el-table-column fixed="right" label="操作">
         <template slot-scope="scope">
-          <el-button type="text" size="small">修改</el-button>
+          <el-button size="mini" type="danger">修改</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -26,7 +29,7 @@
       :page-size="10"
       layout="total, sizes, prev, pager, next, jumper"
       :total="total"
-    ></el-pagination> -->
+    ></el-pagination>-->
   </div>
 </template>
 
@@ -39,10 +42,10 @@ const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
 export default {
   name: "platformUsers",
   computed: {
-    ...mapState(["rows","userType"])
+    ...mapState(["rows", "userType"])
   },
   mounted() {
-    this.getUsersByTypeAsync()
+    this.getUsersByTypeAsync();
   },
   watch: {
     userType() {
@@ -50,7 +53,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["getUsersByTypeAsync"])
+    ...mapActions(["getUsersByTypeAsync"]),
+    handleCurrentChange(val) {
+      console.log(val);
+      this.currentRow = val;
+    }
   }
 };
 </script>

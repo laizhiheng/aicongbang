@@ -12,9 +12,9 @@ export default new Router({
       name: 'platform',
       component: () => import('./views/platform/info.vue'),
       children: [{
-          path: 'platformList',
-          name: 'platformList',
-          component: () => import('./components/platform/platformList/app.vue')
+          path: 'storeList',
+          name: 'storeList',
+          component: () => import('./components/platform/storeList/app.vue')
         }, {
           path: 'platformUsers',
           name: 'platformUsers',
@@ -28,9 +28,17 @@ export default new Router({
           name: 'petMasterList',
           component: () => import('./components/platform/petMaster/petMasterList.vue')
         }, {
+          path: 'addPetMaster',
+          name: 'addPetMaster',
+          component: () => import('./components/platform/addPetMaster/app.vue')
+        }, {
           path: 'auditingList',
           name: 'auditingList',
           component: () => import('./components/platform/auditing/auditingList.vue')
+        }, {
+          path: 'supplier',
+          name: 'supplier',
+          component: () => import('./components/platform/supplier/app.vue')
         }]
     }, {
       path: '/store',
