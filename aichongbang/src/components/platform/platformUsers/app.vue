@@ -21,7 +21,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <!-- <el-pagination
+    <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page="curPage"
@@ -29,7 +29,7 @@
       :page-size="10"
       layout="total, sizes, prev, pager, next, jumper"
       :total="total"
-    ></el-pagination>-->
+    ></el-pagination>
   </div>
 </template>
 
@@ -42,21 +42,34 @@ const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
 export default {
   name: "platformUsers",
   computed: {
-    ...mapState(["rows", "userType"])
+    ...mapState(["rows", "curPage", "eachPage", "maxPage", "total"])
   },
   mounted() {
     this.getUsersByTypeAsync();
   },
   watch: {
     userType() {
-      this.getUsersByTypeAsync({ userType: this.userType });
+      this.getUsersByTypeAsync({ userType: this.userType ,curPage: this.curPage});
     }
   },
   methods: {
-    ...mapActions(["getUsersByTypeAsync"]),
     handleCurrentChange(val) {
-      console.log(val);
-      this.currentRow = val;
+      this.setCurPage(val);
+    },
+      handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+    },
+    ...mapActions(["getUsersByTypeAsync"]),
+    ...mapMutations(["setCurPage"]),
+    firstPage() {
+      if (this.curPage != 1) {
+        this.setCurPage(1);
+      }
+    },
+    lastPage() {
+      if (this.curPage != this.maxPage) {
+        this.setCurPage(this.maxPage);
+      }
     }
   }
 };

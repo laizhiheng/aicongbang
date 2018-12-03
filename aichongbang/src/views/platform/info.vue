@@ -27,7 +27,7 @@
               <i class="el-icon-more"></i>宠主
             </template>
             <el-menu-item-group>
-              <el-menu-item index="/platform/petMasterList">宠主列表</el-menu-item>
+              <el-menu-item index="/platform/petowners">宠主列表</el-menu-item>
               <el-menu-item index="/platform/addPetMaster">新增宠主</el-menu-item>
             </el-menu-item-group>
           </el-submenu>

@@ -9,12 +9,15 @@ export default {
   },
   mutations: {
     getUsersByPage(state, payload) {
-      Object.assign(state.rows, payload)
+      Object.assign(state, payload)
+    },
+    setCurPage(state, curPage) {
+      state.curPage = curPage
     }
   },
   actions: {
-    async getUsersByTypeAsync(context,{userType = 0}={}) {
-      const data = await fetch(`/users/getUsersByType?userType=${userType}`).then(response => response.json())
+    async getUsersByTypeAsync(context,{userType = 0,curPage = 1, eachPage = 10}={}) {
+      const data = await fetch(`/users/getUsersByType?userType=${userType}&curPage=${curPage}&eachPage=${eachPage}`).then(response => response.json())
       context.commit("getUsersByPage", data)
     }
   }

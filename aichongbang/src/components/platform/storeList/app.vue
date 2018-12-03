@@ -1,6 +1,6 @@
 <template>
   <el-main>
-    <el-table stripe :data="tableData" style="width: 100%">
+    <el-table stripe :data="rows" style="width: 100%">
       <el-table-column min-width="150" prop="storeName" label="店名"></el-table-column>
       <el-table-column min-width="150" prop="shopAdd" label="地址"></el-table-column>
       <el-table-column min-width="150" prop="shopCorporate" label="法人"></el-table-column>
@@ -13,6 +13,15 @@
       </el-table-column>
     </el-table>
     <!-- 分页 -->
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="curPage"
+      :page-sizes="[5, 10, 15, 20]"
+      :page-size="10"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="total">
+    </el-pagination>
   </el-main>
 </template>
 
@@ -24,44 +33,45 @@
 </style>
 
 <script>
+import { createNamespacedHelpers } from "vuex";
+
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
+  "StoreList"
+);
 export default {
-  data() {
-    return {
-      tableData: [
-        {
-          storeName: "123",
-          shopName: "阿斯顿",
-          shopLIcenceImg: "查看营业执照图片",
-          shopCorporate: "梵蒂冈",
-          shopAdd: "法国",
-          shopTel: "125455",
-          shopImg: "String",
-          grade: "5",
-          commodity: "查看上平",
-          pets: "查看宠物",
-          serve: "查看服务",
-          users: "查看电员"
-        },
-        {
-          storeName: "123",
-          shopName: "阿斯顿",
-          shopLIcenceImg: "查看营业执照图片",
-          shopCorporate: "梵蒂冈",
-          shopAdd: "法国",
-          shopTel: "125455",
-          shopImg: "String",
-          grade: "5",
-          commodity: "查看上平",
-          pets: "查看宠物",
-          serve: "查看服务",
-          users: "查看电员"
-        }
-      ]
-    };
+  name: "storeList",
+  computed: {
+    ...mapState(["rows", "curPage", "eachPage", "maxPage", "total"])
+  },
+  mounted() {
+    this.getStoreListByPageAsync();
+  },
+  watch: {
+    curPage() {
+      this.getStoreListByPageAsync({ curPage: this.curPage });
+    }
   },
   methods: {
     handleEdit(index, row) {
       console.log(index, row);
+    },
+      handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+    },
+    handleCurrentChange(val) {
+      this.setCurPage(val);
+    },
+    ...mapActions(["getStoreListByPageAsync"]),
+    ...mapMutations(["setCurPage"]),
+    firstPage() {
+      if (this.curPage != 1) {
+        this.setCurPage(1);
+      }
+    },
+    lastPage() {
+      if (this.curPage != this.maxPage) {
+        this.setCurPage(this.maxPage);
+      }
     }
   }
 }

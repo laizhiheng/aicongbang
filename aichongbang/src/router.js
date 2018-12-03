@@ -24,9 +24,9 @@ export default new Router({
           name: 'storesUsers',
           component: () => import('./components/platform/storesUsers/app.vue')
         }, {
-          path: 'petMasterList',
-          name: 'petMasterList',
-          component: () => import('./components/platform/petMaster/petMasterList.vue')
+          path: 'petowners',
+          name: 'petowners',
+          component: () => import('./components/platform/petowners/petowners.vue')
         }, {
           path: 'addPetMaster',
           name: 'addPetMaster',
