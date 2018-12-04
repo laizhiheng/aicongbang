@@ -44,6 +44,7 @@ export default new Router({
         name: 'login',
         component: Login
       },
+ 
       {
         path: '/reg',//注册店主
         name: 'reg',

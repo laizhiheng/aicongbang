@@ -13,6 +13,17 @@
           <el-input v-model="shopName"></el-input>
         </el-form-item>
         <!-- 营业执照图片 -->
+        <el-upload
+          class="upload-demo"
+          action="/users/addImgs"
+          :on-success="handleAvatarSuccess"
+          :before-upload="beforeAvatarUpload"
+          list-type="picture"
+        >
+          <el-button size="small" type="primary">点击上传营业执照照片</el-button>
+          <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+        </el-upload>
+        <!-- end -->
         <el-form-item label="法人">
           <el-input v-model="shopCorporate"></el-input>
         </el-form-item>
@@ -23,6 +34,17 @@
           <el-input v-model="shopTel"></el-input>
         </el-form-item>
         <!-- 封面图片 -->
+          <el-upload
+          class="upload-demo"
+          action="/users/addImgs"
+          :on-success="handleAvatarSuccessShopImg"
+          :before-upload="beforeAvatarUploadShopImg"
+          list-type="picture"
+        >
+          <el-button size="small" type="primary">点击上传封面图片</el-button>
+          <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+        </el-upload>
+        <!-- end -->
         <el-form-item label="商店等级">
           <el-input placeholder="1 / 2 / 3" v-model="grade"></el-input>
         </el-form-item>
@@ -49,10 +71,50 @@ export default {
       shopCorporate: "",
       shopAdd: "",
       shopTel: "",
-      grade: ""
+      grade: "",
+      shopLIcenceImg: "",
+      shopImg:"",
     };
   },
   methods: {
+    handleAvatarSuccess(res, file) {
+      this.shopLIcenceImg = res._id;
+    },
+    handleAvatarSuccessShopImg(res, file) {
+      this.shopImg = res._id;
+    },
+    beforeAvatarUpload(file) {
+      // console.log(file)
+      // const isJPG = file.type === 'image/jpeg'
+      const isLt5M = file.size / 1024 / 1024 < 5;
+      // if (!isJPG) {
+      //   Message.error('上传头像图片只能是 JPG 格式!');
+      // }
+      if (!isLt5M) {
+        Message({
+          type: "warning",
+          message: "上传头像图片大小不能超过 5MB!",
+          showClose: true
+        });
+      }
+      return isLt5M;
+    },
+    beforeAvatarUploadShopImg(file) {
+      // console.log(file)
+      // const isJPG = file.type === 'image/jpeg'
+      const isLt5M = file.size / 1024 / 1024 < 5;
+      // if (!isJPG) {
+      //   Message.error('上传头像图片只能是 JPG 格式!');
+      // }
+      if (!isLt5M) {
+        Message({
+          type: "warning",
+          message: "上传头像图片大小不能超过 5MB!",
+          showClose: true
+        });
+      }
+      return isLt5M;
+    },
     ...mapActions(["createStoreAsync"]),
 
     createStore() {
@@ -60,11 +122,11 @@ export default {
       let obj = {
         storeName: this.storeName, //店名
         shopName: this.shopName, //营业执照
-        //差营业执照图片
+        shopLIcenceImg: this.shopLIcenceImg,//营业执照图片
         shopCorporate: this.shopCorporate, //法人
         shopAdd: this.shopAdd, //地址
         shopTel: this.shopTel, //电话
-        //差头图
+        shopImg: this.shopImg, //封面
         //宠物未关联
         //服务未关联
         grade: this.grade, ////商店等级
@@ -72,7 +134,7 @@ export default {
       };
       this.createStoreAsync(obj); //请求数据创建店铺
       this.$message("注册成功，请登陆");
-      this.$router.push({ path: "/login" }); //注册完成后跳转到登陆页面
+      this.$router.push({ path: "/" }); //注册完成后跳转到登陆页面
     }
   }
 };

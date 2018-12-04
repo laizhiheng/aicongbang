@@ -1,25 +1,28 @@
 export default {
     namespaced: true,
-    state:{
-        usersId:1
+    state: {
+        usersId: 1
     },
     mutations: {
-        getUserId(state,payload){
+        getUserId(state, payload) {
+            console.log(payload)
             state.usersId = payload
         }
     },
     actions: {
         async createUser(context, obj) {
             const data = await fetch("/users/userReg", {
-                headers: { 
+                headers: {
                     "Content-Type": "application/json"
                 },
                 method: "POST",
                 body: JSON.stringify(obj)
-              })
-              .then(res => res.json())
-              .then((res) => context.commit("getUserId", res))
-
+            })
+                .then(res => res.json())
+                .then((res) => {
+                    console.log(res)
+                    context.commit("getUserId", res)
+                })
         }
     }
 }

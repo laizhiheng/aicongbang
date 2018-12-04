@@ -49,7 +49,7 @@
 
 <script>
 import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions, mapMutations } = createNamespacedHelpers("Reg");
+const { mapState, mapActions } = createNamespacedHelpers("Reg");
 
 export default {
   name: "reg",
@@ -65,6 +65,7 @@ export default {
   },
   computed: {
     ...mapState(["usersId"])
+
   },
   methods: {
     ...mapActions(["createUser"]),
@@ -85,6 +86,7 @@ export default {
         name: "_storeReg",
         params: { usersId: this.usersId }
       });
+      
     }
   }
 };
