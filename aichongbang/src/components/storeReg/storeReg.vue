@@ -152,4 +152,8 @@ export default {
   top: 50px;
   left: 480px;
 }
+.upload-demo{
+  margin-left: 150px;
+  margin-bottom: 20px;
+}
 </style>
