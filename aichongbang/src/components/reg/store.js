@@ -5,7 +5,6 @@ export default {
     },
     mutations: {
         getUserId(state, payload) {
-            console.log(payload)
             state.usersId = payload
         }
     },
@@ -20,7 +19,6 @@ export default {
             })
                 .then(res => res.json())
                 .then((res) => {
-                    console.log(res)
                     context.commit("getUserId", res)
                 })
         }

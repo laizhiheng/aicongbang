@@ -25,7 +25,7 @@ export default new Vuex.Store({
     StoresUsers,
     Auditing,
     Commdity,
-    StoresPetsAddPets
+    StoresPetsAddPets,
     StoreList,
     Petowners,
     AddPetMaster,

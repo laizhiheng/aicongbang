@@ -2,7 +2,6 @@
   <div>
     <el-table :data="rows" border style="width: 100%">
       <el-table-column fixed="left" prop="petsName" label="宠物名称" width="120"></el-table-column>
-<<<<<<< HEAD
       <el-table-column prop="petsClass" label="宠物品类" width="120"></el-table-column>
       <el-table-column prop="petsType" label="宠物种类" width="120"></el-table-column>
       <el-table-column prop="petsDate" label="出生日期" width="120"></el-table-column>
@@ -19,17 +18,6 @@
           >查看图片</el-button>
         </template>
       </el-table-column>
-=======
-      <el-table-column prop="petsClass" label="宠物品类"></el-table-column>
-      <el-table-column prop="petsType" label="宠物种类"></el-table-column>
-      <el-table-column prop="petsDate" label="出生日期" width="120"></el-table-column>
-      <el-table-column prop="petsColor" label="宠物颜色"></el-table-column>
-      <el-table-column prop="petsGender" label="宠物性别"></el-table-column>
-      <el-table-column prop="petsCharacter" label="宠物性格"></el-table-column>
-      <el-table-column prop="petsPrice" label="宠物价格"></el-table-column>
-      <el-table-column prop="store" label="商家" width="300"></el-table-column>
-      <el-table-column prop="petsImg" label="图片" width="120"></el-table-column>
->>>>>>> 09965de5032800f4d1880094c517482a7d10c04a
       <el-table-column fixed="right" label="操作" width="210">
         <template slot-scope="scope">
           <el-button
@@ -50,12 +38,9 @@
       layout="total, sizes, prev, pager, next, jumper"
       :total="total"
     ></el-pagination>
-<<<<<<< HEAD
      <el-dialog title="修改信息" :data="rows" :visible.sync="ck">
           <p prop="petsImg">"{{petsImg}}"</p>
        </el-dialog>
-=======
->>>>>>> 09965de5032800f4d1880094c517482a7d10c04a
     <el-dialog title="修改信息" :visible.sync="dialogFormVisible">
       <el-form style="display: flex;justify-content: space-around;">
         <div>
@@ -76,7 +61,6 @@
           </el-form-item>
           <el-form-item label="宠物萌照：" prop="name">
             <el-upload
-<<<<<<< HEAD
               class="upload-demo"
               action="/pets/addImgs"
               :on-success="handleAvatarSuccess"
@@ -85,16 +69,6 @@
             >
               <el-button size="small" type="primary">点击上传</el-button>
               <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-=======
-              class="prod-image"
-              action="/learn/upload"
-              :show-file-list="false"
-              :on-success="handleSuccess"
-              :before-upload="beforeUpload"
-            >
-              <img v-if="imageUrl" :src="imageUrl" class="cur-image">
-              <i v-else class="el-icon-plus prod-uploader-icon"></i>
->>>>>>> 09965de5032800f4d1880094c517482a7d10c04a
             </el-upload>
           </el-form-item>
         </div>
@@ -112,11 +86,7 @@
           <el-form-item label="宠物价格：" prop="name">
             <el-input style="width:240px" v-model="petsPrice" placeholder="输入数字，单位元"></el-input>
           </el-form-item>
-<<<<<<< HEAD
           <el-form-item label="所属商店">
-=======
-          <el-form-item label="选择商家：">
->>>>>>> 09965de5032800f4d1880094c517482a7d10c04a
             <el-select v-model="department" placeholder="请选择" style="width:240px;">
               <el-option
                 style="height:50px;"
@@ -175,12 +145,8 @@ export default {
         }
       ],
       department: "",
-<<<<<<< HEAD
       dialogFormVisible: false,
       ck:false
-=======
-      dialogFormVisible: false
->>>>>>> 09965de5032800f4d1880094c517482a7d10c04a
     };
   },
   computed: {
@@ -253,24 +219,6 @@ export default {
         this.setCurPage(this.maxPage);
       }
     },
-<<<<<<< HEAD
-=======
-    beforeUpload(file) {
-      const isPIC = file.type === "image/jpeg" || "image/png";
-      const isLt5M = file.size / 1024 / 1024 < 5;
-
-      if (!isPIC) {
-        this.$message.error("上传图片只能是 JPG或PNG 格式!");
-      }
-      if (!isLt5M) {
-        this.$message.error("上传图片大小不能超过 5MB!");
-      }
-      return isPIC && isLt5M;
-    },
-    handleSuccess(res, file) {
-      this.imageUrl = URL.createObjectURL(file.raw);
-    },
->>>>>>> 09965de5032800f4d1880094c517482a7d10c04a
     ok() {
       console.log(this._id);
       let obj = {
@@ -287,7 +235,6 @@ export default {
       };
       this.updateByIdAsync(obj);
       this.getPetsByPageAsync();
-<<<<<<< HEAD
     },
     handleAvatarSuccess(res, file) {
       this.petsImg = res._id;
@@ -307,8 +254,6 @@ export default {
         });
       }
       return isLt5M;
-=======
->>>>>>> 09965de5032800f4d1880094c517482a7d10c04a
     }
   }
 };

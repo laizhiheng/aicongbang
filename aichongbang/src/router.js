@@ -10,19 +10,6 @@ import Info from "./info.vue"
 Vue.use(Router)
 
 export default new Router({
-<<<<<<< HEAD
-  routes:
-
-    [
-      {
-        path: '/platform',
-        name: 'platform',
-        component: () => import('./views/platform/info.vue'),
-        children: [{
-          path: 'platformList',
-          name: 'platformList',
-          component: () => import('./components/platform/platformList/app.vue')
-=======
   routes: [
     {
       path: '/platform',
@@ -32,7 +19,6 @@ export default new Router({
           path: 'storeList',
           name: 'storeList',
           component: () => import('./components/platform/storeList/app.vue')
->>>>>>> wusishuang3
         }, {
           path: 'platformUsers',
           name: 'platformUsers',
