@@ -56,7 +56,7 @@ export default new Router({
           name:"addServe",
           component: () => import('./components/stores/serve/addServe.vue')
         },
-        {
+        { 
           path:"petsList",
           name:"petsList",
           component: () => import('./components/stores/pets/petsList.vue')

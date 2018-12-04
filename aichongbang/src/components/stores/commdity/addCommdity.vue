@@ -1,9 +1,8 @@
 <template>
-
   <div>
     <h1 style="display:flex;justify-content:center;">商品新增</h1>
     <div style="margin-top:40px;display:flex">
-      <el-form ref="form" :model="form" label-width="200px">
+      <el-form ref="form" :model="form" label-width="200px" :rules="rules">
         <el-form-item label="所属商店">
           <el-select v-model="form.region" placeholder="请选所属商店"></el-select>
         </el-form-item>
@@ -25,19 +24,6 @@
         <el-form-item label="包装规格">
           <el-input v-model="form.goodsSize" style="width:200px;" placeholder="请输入商品包装规格"></el-input>
         </el-form-item>
-        <!-- <el-form-item label="图片">
-          <el-upload
-            class="upload-demo"
-            action="https://jsonplaceholder.typicode.com/posts/"
-            :on-preview="handlePreview"
-            :on-remove="handleRemove"
-            :file-list="fileList2"
-            list-type="picture"
-          >
-            <el-button size="small" type="primary">点击上传</el-button>
-            <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-          </el-upload>
-        </el-form-item> -->
       </el-form>
       <el-form ref="form" :model="form" label-width="200px">
         <el-form-item label="口味">
@@ -63,9 +49,24 @@
         </el-form-item>
       </el-form>
     </div>
+    <div style="width:500px">
+      <el-form ref="form" :model="form" label-width="200px">
+        <el-form-item label="图片">
+          <el-upload
+            class="upload-demo"
+            action="/commodityRouter/addCommodityImg"
+            :on-preview="handlePreview"
+            :on-remove="handleRemove"
+            :on-success="handSuccess"
+            list-type="picture">
+            <el-button size="small" type="primary">点击上传</el-button>
+            <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+          </el-upload>
+        </el-form-item>
+      </el-form>
+    </div>
     <div style="width:200px;margin:0 auto">
-      <el-button type="primary" @click="onSubmit">立即创建</el-button>
-      <el-button>取消</el-button>
+      <el-button type="primary" @click="onSubmit">立即新增</el-button>
     </div>
   </div>
 </template>
@@ -78,21 +79,26 @@ const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
 export default {
   data() {
     return {
+      fileList2: [{ name: "", url: "" }],
       form: {
         goodsName: "",
-        goodsType:"",
+        goodsType: "",
         goodsMaterial: "",
-        goodsCanFo:"",
+        goodsCanFo: "",
         goodsOnlyFor: "",
-        goodsSize:"",
+        goodsSize: "",
         goodsTaste: "",
-        goodsSpecial:"",
+        goodsSpecial: "",
         goodsRegion: "",
-        goodsDate:"",
+        goodsDate: "",
         goodsTime: "",
-        goodsSupplier:"",
-        goodsPrice:"",
-        region: "",
+        goodsSupplier: "",
+        goodsPrice: "",
+        region: ""
+      },
+      rules: {
+        region: [{ required: true, message: "请选择商店", trigger: "change" }],
+        goodsName: [{ required: true, message: "请输入名称", trigger: "blur" }]
       }
       // form: {
       //   name: "",
@@ -106,26 +112,58 @@ export default {
   },
   methods: {
     ...mapActions(["addCommdity"]),
+    handSuccess(response, file, fileList) {
+      this.goodsImgs = response._id;
+      this.goodsUrl = response.url;
+    },
+    handleRemove(file, fileList) {
+      // console.log(file, fileList);
+    },
+    handlePreview(file) {
+      // console.log(file);
+    },
     onSubmit() {
+      this.$refs["form"].validate(valid => {
+        if (valid === false) return false;
+      });
       let obj = {
         goodsName: this.form.goodsName,
-        goodsType:this.form.goodsType,
+        goodsType: this.form.goodsType,
         goodsMaterial: this.form.goodsMaterial,
-        goodsCanFo:this.form.goodsCanFo,
+        goodsCanFo: this.form.goodsCanFo,
         goodsOnlyFor: this.form.goodsOnlyFor,
-        goodsSize:this.form.goodsSize,
+        goodsSize: this.form.goodsSize,
         goodsTaste: this.form.goodsTaste,
-        goodsSpecial:this.form.goodsSpecial,
+        goodsSpecial: this.form.goodsSpecial,
         goodsRegion: this.form.goodsRegion,
-        goodsDate:this.form.goodsDate,
+        goodsDate: this.form.goodsDate,
         goodsTime: this.form.goodsTime,
-        goodsSupplier:this.form.goodsSupplier,
-        goodsPrice:this.form.goodsPrice,
+        goodsSupplier: this.form.goodsSupplier,
+        goodsPrice: this.form.goodsPrice,
         region: this.form.region,
-      }
-      this.addCommdity(obj)
-    },
-    
+        goodsImg: this.goodsImgs,
+        goodsUrl:this.goodsUrl
+      };
+      this.$confirm("是否新增?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          this.addCommdity(obj);
+          this.$message({
+            type: "success",
+            message: "新增成功!"
+          });
+          this.$refs["form"].resetFields();
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消新增"
+          });
+        });
+    }
   }
 };
 </script>
