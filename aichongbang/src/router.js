@@ -10,6 +10,7 @@ import Info from "./info.vue"
 Vue.use(Router)
 
 export default new Router({
+<<<<<<< HEAD
   routes:
 
     [
@@ -21,22 +22,41 @@ export default new Router({
           path: 'platformList',
           name: 'platformList',
           component: () => import('./components/platform/platformList/app.vue')
+=======
+  routes: [
+    {
+      path: '/platform',
+      name: 'platform',
+      component: () => import('./views/platform/info.vue'),
+      children: [{
+          path: 'storeList',
+          name: 'storeList',
+          component: () => import('./components/platform/storeList/app.vue')
+>>>>>>> wusishuang3
         }, {
           path: 'platformUsers',
           name: 'platformUsers',
-          component: () => import('./components/platform/platformUsers/users.vue')
+          component: () => import('./components/platform/platformUsers/app.vue')
         }, {
           path: 'storesUsers',
           name: 'storesUsers',
-          component: () => import('./components/platform/storesUsers/users.vue')
+          component: () => import('./components/platform/storesUsers/app.vue')
         }, {
-          path: 'petMasterList',
-          name: 'petMasterList',
-          component: () => import('./components/platform/petMaster/petMasterList.vue')
+          path: 'petowners',
+          name: 'petowners',
+          component: () => import('./components/platform/petowners/petowners.vue')
+        }, {
+          path: 'addPetMaster',
+          name: 'addPetMaster',
+          component: () => import('./components/platform/addPetMaster/app.vue')
         }, {
           path: 'auditingList',
           name: 'auditingList',
           component: () => import('./components/platform/auditing/auditingList.vue')
+        }, {
+          path: 'supplier',
+          name: 'supplier',
+          component: () => import('./components/platform/supplier/app.vue')
         }]
       }, 
       {
