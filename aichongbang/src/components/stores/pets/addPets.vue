@@ -16,15 +16,16 @@
         <el-form-item label="宠物颜色：" prop="name"  >
             <el-input style="width:250px" v-model="petsColor"  placeholder="请输入：黑，白..."></el-input>
         </el-form-item>
+       
         <el-form-item label="宠物萌照：" prop="name" >
             <el-upload
-                class="prod-image"
-                action="/learn/upload"
-                :show-file-list="false"
-                :on-success="handleSuccess"
-                :before-upload="beforeUpload">
-                <img v-if="imageUrl" :src="imageUrl" class="cur-image">
-                <i v-else class="el-icon-plus prod-uploader-icon"></i>
+                class="upload-demo"
+                action="/pets/addImgs"
+                :on-success="handleAvatarSuccess"
+                :before-upload="beforeAvatarUpload"
+                list-type="picture">
+                <el-button size="small" type="primary">点击上传</el-button>
+                <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
             </el-upload>
         </el-form-item>
         
@@ -43,7 +44,7 @@
         <el-form-item label="宠物价格：" prop="name" >
             <el-input style="width:250px" v-model="petsPrice" placeholder="输入数字，单位元"></el-input>
         </el-form-item>
-        <el-form-item label="选择商家：" >
+        <el-form-item label="所属商店" >
 		    <el-select v-model="department" placeholder="请选择" style="width:250px;">
 		    <el-option style="height:50px;" v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
     	</el-select>
@@ -57,12 +58,10 @@
             </el-date-picker>    
         </el-form-item>
         <el-form-item>
-            <el-button type="primary" @click="addPets">立即创建</el-button>
-        
+                   <el-button type="primary" @click="addPets">立即创建</el-button> 
         </el-form-item>
     </el-form>
     </div>
-    <!-- ,store:this.department -->
 </template>
 <script>
     import{ createNamespacedHelpers} from "vuex"
@@ -105,20 +104,24 @@
                     type: 'success'
                     });
                 },
-                beforeUpload (file) {
-                    const isPIC = file.type === 'image/jpeg' || 'image/png'
-                    const isLt5M = file.size / 1024 / 1024 < 5
-
-                    if (!isPIC) {
-                        this.$message.error('上传图片只能是 JPG或PNG 格式!')
-                    }
-                    if (!isLt5M) {
-                        this.$message.error('上传图片大小不能超过 5MB!')
-                    }
-                    return isPIC && isLt5M
+               handleAvatarSuccess(res, file) {
+                    this.petsImg = res._id;
                 },
-                handleSuccess (res, file) {
-                    this.imageUrl = URL.createObjectURL(file.raw)
+                beforeAvatarUpload(file) {
+      // console.log(file)
+                // const isJPG = file.type === 'image/jpeg'
+                const isLt5M = file.size / 1024 / 1024 < 5;
+                // if (!isJPG) {
+                //   Message.error('上传头像图片只能是 JPG 格式!');
+                // }
+                if (!isLt5M) {
+                    Message({
+                    type: "warning",
+                    message: "上传头像图片大小不能超过 5MB!",
+                    showClose: true
+                    });
+                }
+                return isLt5M;
                 },
             },
         }
